@@ -1,0 +1,58 @@
+:root{
+  --bg:#0b0f0e;
+  --card:#101815;
+  --muted:#a3b2ac;
+  --fg:#ecf6f1;
+  --brand:#16a34a;
+  --brand-2:#0ea5e9;
+  --danger:#ef4444;
+}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0; font:16px/1.6 system-ui, -apple-system, Segoe UI, Roboto, Noto Sans TC, PingFang TC, sans-serif;
+  color:var(--fg); background:radial-gradient(1200px 800px at 70% -20%, #0f3a2b22, transparent), var(--bg);
+}
+.container{max-width:1100px; margin-inline:auto; padding:24px}
+.small{font-size:14px; color:var(--muted)}
+.site-header{border-bottom:1px solid #ffffff14}
+.site-header h1{margin:0 0 4px; font-size:28px}
+.subtitle{margin:0; color:var(--muted)}
+.site-footer{border-top:1px solid #ffffff14}
+
+.panel{background:linear-gradient(180deg, #10221c, #0c1714); border:1px solid #2b3b34; border-radius:16px; padding:20px; box-shadow:0 10px 30px #0000003b}
+.toolbar{display:flex; gap:16px; align-items:center; justify-content:space-between; margin-bottom:12px}
+.method{display:flex; align-items:center; gap:12px; flex-wrap:wrap}
+.actions{display:flex; gap:10px; align-items:center}
+.input{background:#0b1411; color:var(--fg); border:1px solid #28473b; border-radius:10px; padding:10px 12px; min-width:240px; outline:none}
+.input:focus{border-color:#3dd68c; box-shadow:0 0 0 3px #3dd68c33}
+
+.btn{appearance:none; background:linear-gradient(90deg, var(--brand), var(--brand-2)); color:#062617; font-weight:700; border:0; border-radius:12px; padding:10px 14px; cursor:pointer}
+.btn.ghost{background:transparent; color:var(--fg); border:1px solid #335348}
+.link{color:#86efac; text-decoration:underline; cursor:pointer}
+
+.dropzone{border:2px dashed #2c5145; border-radius:16px; padding:28px; text-align:center; background:#0b1411}
+.dropzone.dragover{border-color:#86efac; box-shadow:0 0 0 4px #3dd68c33}
+.dropzone .hint{color:var(--muted); margin-top:4px}
+.dropzone .dz-inner{display:flex; flex-direction:column; align-items:center; gap:10px}
+.dropzone svg{fill:#86efac}
+
+.results{display:grid; grid-template-columns:repeat(auto-fill,minmax(320px,1fr)); gap:16px; margin:24px 0 40px}
+.card{background:var(--card); border:1px solid #20372f; border-radius:14px; overflow:hidden}
+.card .header{display:flex; align-items:center; justify-content:space-between; gap:12px; padding:12px 14px; border-bottom:1px solid #1a2a24}
+.card .name{font-weight:700; white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
+.card .status{font-size:13px; color:var(--muted)}
+.card .body{padding:12px 14px}
+.card textarea{width:100%; min-height:160px; resize:vertical; background:#0a1310; color:var(--fg); border:1px solid #213b32; border-radius:10px; padding:10px}
+.card .row{display:flex; gap:8px; margin-top:10px}
+
+.progress{height:8px; background:#0a1310; border:1px solid #1f3f33; border-radius:999px; overflow:hidden}
+.progress > span{display:block; height:100%; width:0%; background:linear-gradient(90deg, var(--brand), var(--brand-2)); transition:width .25s}
+.badge{display:inline-flex; align-items:center; gap:6px; font-size:12px; padding:4px 8px; border-radius:999px; border:1px solid #2b4b41; background:#0a1512; color:var(--muted)}
+.badge.warn{border-color:#61420a; background:#1a1407; color:#f1c97a}
+.badge.err{border-color:#5f1717; background:#1a0a0a; color:#ffb4b4}
+
+@media (max-width:640px){
+  .toolbar{flex-direction:column; align-items:stretch}
+  .actions{justify-content:space-between}
+}

@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>PDF 轉文字 | PDF to Text</title>
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <script>
+    // 動態載入腳本（先嘗試本地 vendor，失敗再用 CDN）
+    function loadScriptWithFallback(localSrc, cdnSrc) {
+      return new Promise((resolve) => {
+        const s = document.createElement('script');
+        s.src = localSrc;
+        s.defer = true;
+        s.onload = () => resolve(true);
+        s.onerror = () => {
+          const s2 = document.createElement('script');
+          s2.src = cdnSrc;
+          s2.defer = true;
+          s2.onload = () => resolve(true);
+          s2.onerror = () => resolve(false);
+          document.head.appendChild(s2);
+        };
+        document.head.appendChild(s);
+      });
+    }
+    // 啟動前先盡量載入 pdf.js 與 tesseract.js
+    window.__libsLoaded = (async () => {
+      const ok1 = await loadScriptWithFallback(
+        'assets/vendor/pdfjs/pdf.min.js',
+        'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js'
+      );
+      const ok2 = await loadScriptWithFallback(
+        'assets/vendor/tesseract/tesseract.min.js',
+        'https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js'
+      );
+      return ok1 && ok2;
+    })();
+  </script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <h1>PDF 轉文字</h1>
+      <p class="subtitle">拖放或選擇 PDF，一鍵轉純文字；支援自動 / 只取文字層 / 只 OCR（免安裝，可攜）。</p>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="panel">
+      <div class="toolbar">
+        <div class="method">
+          <label for="ocrMode" class="small">模式：</label>
+          <select id="ocrMode" class="input" style="min-width:200px">
+            <option value="auto" selected>自動（先取文字層，不足再 OCR）</option>
+            <option value="text">只取文字層（最快）</option>
+            <option value="ocr">只跑 OCR（掃描 PDF）</option>
+          </select>
+          <span class="badge">語言：繁中+英文（chi_tra+eng）</span>
+        </div>
+        <div class="actions">
+          <input id="searchInput" class="input" type="search" placeholder="搜尋檔名或內容..." />
+          <button id="clearBtn" class="btn ghost" type="button">清除全部</button>
+        </div>
+      </div>
+
+      <div id="dropzone" class="dropzone" aria-label="拖放 PDF 至此或點擊選擇">
+        <div class="dz-inner">
+          <svg width="32" height="32" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M19 13v6H5v-6H3v6a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-6h-2zM11 6.414V16h2V6.414l3.293 3.293 1.414-1.414L12 2.586 6.293 8.293l1.414 1.414L11 6.414z" />
+          </svg>
+          <p><strong>拖放 PDF</strong> 至這裡，或 <label for="fileInput" class="link">點此選擇檔案</label></p>
+          <p class="hint">支援多檔上傳（每檔建議 ≤ 50MB）</p>
+        </div>
+        <input id="fileInput" type="file" accept="application/pdf" multiple hidden />
+      </div>
+    </section>
+
+    <section class="results" id="results" aria-live="polite"></section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container small">
+      <p>完全瀏覽器內運作。若要離線使用，請把 <code>assets/vendor/pdfjs/</code> 與 <code>assets/vendor/tesseract/</code> 放入對應檔案，及 <code>assets/tessdata/</code> 語言資料。</p>
+    </div>
+  </footer>
+
+  <script src="assets/js/app.js" defer></script>
+</body>
+</html>
