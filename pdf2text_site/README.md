@@ -3,8 +3,8 @@
 **一句話**：完全前端運作，先用 pdf.js 抽文字層，不足時以 Tesseract.js（WASM）做 OCR；免安裝、可整包帶走。
 
 ## 快速使用
-1. 把整個資料夾放到 XAMPP `htdocs/pdf2text_site/`。
-2. 用瀏覽器開 `http://localhost/pdf2text_site/`。
+1. 把整個資料夾放到任何位置 。
+2. 打開 `/pdf2text_site/index.html`。
 3. 拖放或選擇 PDF → 會顯示卡片、進度、純文字，支援複製與 `.txt` 下載。
 4. 模式可選：
    - **自動**：先抽文字層，不足時自動跑 OCR。
