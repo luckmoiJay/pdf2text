@@ -1,3 +1,8 @@
+使用者畫面展示
+
+<img width="1073" height="808" alt="image" src="https://github.com/user-attachments/assets/41cacd09-ff84-4882-9d4e-b1e84ed6cb35" />
+
+
 # PDF 轉文字（HTML/JS/PHP）
 
 **一句話**：完全前端運作，先用 pdf.js 抽文字層，不足時以 Tesseract.js（WASM）做 OCR；免安裝、可整包帶走。
